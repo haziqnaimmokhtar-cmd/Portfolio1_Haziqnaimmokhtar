@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Nur Ashry | E-Portfolio</title>
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --offwhite: #f8fafc;
+      --darkblue: #0b1f3a;
+      --darkblue-2: #102a4c;
+      --gold: #d4af37;
+      --gold-soft: #f5e7b8;
+      --text: #1f2937;
+      --muted: #64748b;
+      --border: #e5e7eb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--offwhite);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* SPLASH SCREEN */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.18), transparent 35%),
+        linear-gradient(135deg, #ffffff 0%, #f8fafc 45%, #0b1f3a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: splashFade 1s ease forwards;
+      animation-delay: 3.3s;
+    }
+
+    .splash-content {
+      text-align: center;
+      animation: splashZoom 3s ease forwards;
+    }
+
+    .splash-logo {
+      width: 115px;
+      height: 115px;
+      margin: 0 auto 22px;
+      border-radius: 30px;
+      background: var(--darkblue);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 30px 80px rgba(11, 31, 58, 0.35);
+    }
+
+    .splash-content h1 {
+      color: var(--darkblue);
+      font-size: clamp(2rem, 5vw, 4rem);
+      margin-bottom: 8px;
+      letter-spacing: -1px;
+    }
+
+    .splash-content p {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    .loading-line {
+      width: 230px;
+      height: 4px;
+      background: rgba(11, 31, 58, 0.15);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 28px auto 0;
+    }
+
+    .loading-line::before {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      animation: loadingMove 2.7s ease forwards;
+    }
+
+    @keyframes loadingMove {
+      to { width: 100%; }
+    }
+
+    @keyframes splashZoom {
+      0% { opacity: 0; transform: scale(0.82); }
+      25% { opacity: 1; transform: scale(1); }
+      75% { opacity: 1; transform: scale(1.04); }
+      100% { opacity: 0; transform: scale(1.12); }
+    }
+
+    @keyframes splashFade {
+      to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    /* ENTRANCE ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(45px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .animate-up {
+      animation: fadeUp 1s ease both;
+    }
+
+    .animate-left {
+      animation: fadeLeft 1s ease both;
+    }
+
+    .animate-right {
+      animation: fadeRight 1s ease both;
+    }
+
+    .animate-scale {
+      animation: scaleIn 1s ease both;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeDown 1s ease both;
+      animation-delay: 3.7s;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--darkblue);
+      transition: 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      position: relative;
+      text-decoration: none;
+      color: var(--darkblue);
+      margin-left: 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 90px 8%;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-text {
+      animation: fadeLeft 1.1s ease both;
+      animation-delay: 3.9s;
+    }
+
+    .tagline {
+      display: inline-block;
+      background: var(--gold-soft);
+      color: var(--darkblue);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+      transition: 0.3s ease;
+    }
+
+    .tagline:hover {
+      background: var(--darkblue);
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 22px;
+      color: var(--darkblue);
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      margin-right: 10px;
+      transition: 0.35s ease;
+    }
+
+    .btn-primary {
+      background: var(--darkblue);
+      color: var(--white);
+      box-shadow: 0 10px 25px rgba(11, 31, 58, 0.18);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      color: var(--darkblue);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--gold);
+      color: var(--darkblue);
+      background: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: var(--darkblue);
+      color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 35px rgba(11, 31, 58, 0.18);
+    }
+
+    .profile-box {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 25px;
+      box-shadow: 0 20px 50px rgba(11, 31, 58, 0.12);
+      border: 1px solid var(--border);
+      animation: fadeRight 1.1s ease both;
+      animation-delay: 4.1s;
+      transition: 0.4s ease;
+    }
+
+    .profile-box:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 30px 70px rgba(11, 31, 58, 0.22);
+      border-color: var(--gold);
+    }
+
+    .profile-box img {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+      border-radius: 22px;
+      margin-bottom: 20px;
+      background: #ddd;
+      border: 3px solid var(--gold);
+      transition: 0.4s ease;
+    }
+
+    .profile-box:hover img {
+      transform: scale(1.02);
+      filter: brightness(1.05) contrast(1.05);
+    }
+
+    .profile-box h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: var(--darkblue);
+    }
+
+    .profile-box p {
+      color: var(--muted);
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 45px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .section-title h2 {
+      font-size: 2.4rem;
+      margin-bottom: 12px;
+      color: var(--darkblue);
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .about-grid,
+    .skills-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 12px 35px rgba(11, 31, 58, 0.08);
+      border: 1px solid var(--border);
+      transition: 0.35s ease;
+      overflow: hidden;
+      animation: fadeUp 1s ease both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: var(--gold);
+      transition: 0.35s ease;
+    }
+
+    .card:hover::before {
+      width: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 45px rgba(11, 31, 58, 0.13);
+    }
+
+    .card h3 {
+      color: var(--darkblue);
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+      transition: 0.3s ease;
+    }
+
+    .card:hover h3 {
+      color: var(--gold);
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card li {
+      padding: 7px 0;
+      transition: 0.3s ease;
+    }
+
+    .card li:hover {
+      transform: translateX(6px);
+      color: var(--darkblue);
+      font-weight: 600;
+    }
+
+    .projects {
+      background: var(--white);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 26px;
+    }
+
+    .project-card {
+      background: var(--offwhite);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: 0.4s ease;
+      animation: scaleIn 1s ease both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+    .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(11, 31, 58, 0.18);
+      border-color: var(--gold);
+    }
+
+    .project-image {
+      height: 190px;
+      background: linear-gradient(135deg, var(--darkblue), var(--darkblue-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: 0.4s ease;
+    }
+
+    .project-card:hover .project-image {
+      letter-spacing: 1px;
+      filter: brightness(1.1);
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 12px;
+      color: var(--darkblue);
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover h3 {
+      color: var(--gold);
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--gold-soft);
+      color: var(--darkblue);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin: 4px 4px 0 0;
+      transition: 0.3s ease;
+    }
+
+    .tag:hover {
+      background: var(--darkblue);
+      color: var(--gold);
+      transform: translateY(-3px);
+    }
+
+	.video-box {
+	background: var(--white);
+	border-radius: 24px;
+	padding: 25px;
+	box-shadow: 0 12px 35px rgba(11, 31, 58, 0.08);
+	border: 1px solid var(--border);
+	transition: 0.35s ease;
+	animation: fadeUp 1s ease both;
+
+	max-width: 700px
+	margin: auto;      
+	}
+
+    .video-box:hover {
+      border-color: var(--gold);
+      box-shadow: 0 20px 45px rgba(11, 31, 58, 0.14);
+      transform: translateY(-6px);
+    }
+
+    video {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 18px;
+      background: #ddd;
+      border: 2px solid var(--gold);
+      transition: 0.35s ease;
+    }
+
+    video:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 45px rgba(11, 31, 58, 0.16);
+    }
+
+    .contact-card a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 800;
+      word-break: break-word;
+      transition: 0.3s ease;
+    }
+
+    .contact-card:hover a {
+      color: var(--darkblue);
+      letter-spacing: 0.3px;
+    }
+
+    footer {
+      padding: 28px 8%;
+      text-align: center;
+      background: var(--darkblue);
+      color: var(--white);
+      animation: fadeUp 1s ease both;
+    }
+
+    @media (max-width: 850px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav a {
+        margin: 0 8px;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      section {
+        padding: 70px 6%;
+      }
+
+      .profile-box img {
+        height: 300px;
+      }
+    }
+	
+		//TAMBAH GAMBAR 
+		
+		.about-flex {
+	  display: grid;
+	  grid-template-columns: 1.2fr 0.8fr;
+	  gap: 40px;
+	  align-items: center;
+	}
+
+	.about-text {
+	  color: var(--muted);
+	  font-size: 1.05rem;
+	  line-height: 1.8;
+	}
+
+	.about-image img {
+	  width: 170px;   /* kecilkan ikut suka */
+	  height: auto;
+	  border-radius: 24px;
+	  object-fit: cover;
+	  border: 3px solid var(--gold);
+	  box-shadow: 0 15px 40px rgba(11, 31, 58, 0.15);
+	  display: block;
+	  margin-left: left;
+	}
+
+	.about-image img:hover {
+	  transform: scale(1.03);
+	}
+
+	/* Responsive */
+	@media (max-width: 850px) {
+	  .about-flex {
+		grid-template-columns: 1fr;
+		text-align: left;
+	  }
+	}
+
+	.project-image {
+	  height: 190px;
+	  background: linear-gradient(135deg, var(--darkblue), var(--darkblue-2));
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 12px;
+	  color: var(--gold);
+	  font-weight: 800;
+	  font-size: 1.1rem;
+	  text-align: center;
+	  transition: 0.4s ease;
+	  padding: 18px;
+	}
+
+	.project-image img {
+	  width: 100%;
+	  max-width: 170px;
+	  height: 110px;
+	  object-fit: cover;
+	  border-radius: 14px;
+	  border: 2px solid var(--gold);
+	  background: var(--white);
+	}
+
+	.project-image span {
+	  display: block;
+	}
+
+	.project-image video {
+	  width: 100%;
+	  max-width: 175px;
+	  height: 110px;
+	  object-fit: cover;
+	  border-radius: 14px;
+	  border: 2px solid var(--gold);
+	  background: black;
+	}
+	
+	
+	.archiement-image {
+	  margin-bottom: 25px;
+	}
+
+	.archiement-image {
+	  height: 240px;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 12px;
+	  color: var(--gold);
+	  font-weight: 800;
+	  font-size: 1.1rem;
+	  text-align: center;
+	  transition: 0.4s ease;
+	  padding: 18px;
+	}
+	.archiement-image img {
+	  width: 100%;
+	  max-width: 220px;
+	  height: 260px;
+	  object-fit: cover;
+	  border-radius: 14px;
+	  border: 2px solid var(--gold);
+	  background: var(--white);
+	}
+
+	.project-image span {
+	  display: block;
+	}
+	
+	.project-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: var(--darkblue);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.project-btn:hover {
+  background: var(--gold);
+  color: var(--darkblue);
+  transform: translateY(-3px);
+}
+		
+  </style>
+</head>
+
+<body>
+
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">THN</div>
+      <h1>TENGKU HAZIQ NAIM</h1>
+      <p>Multimedia E-Portfolio</p>
+      <div class="loading-line"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">TENGKU HAZIQ NAIM</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+	  <a href="#achievement">Achievement</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <span class="tagline">Multimedia Student Portfolio</span>
+      <h1>Creative multimedia designer for <span>visual and digital content.</span></h1>
+      <p>
+        I am Tengku Haziq Naim, currently pursuing a Bachelor of Education (Multimedia) at Universiti Pendidikan Sultan Idris (UPSI). 
+		This e-portfolio has been carefully developed to showcase my competencies, academic projects, reflective learning experiences, and creative outputs. 
+		It serves as a comprehensive platform that highlights my readiness and potential to 
+		contribute meaningfully to internship opportunities within the multimedia and creative industry.
+      </p>
+
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    </div>
+
+    <div class="profile-box">
+      <img src="GambarProfile.jpeg" alt="Profile Photo">
+      <h3>Tengku Haziq Naim bin Tengku Mokhtar</h3>
+      <p>Bachelor of Education (Multimedia) with Honours</p>
+      <p>Universiti Pendidikan Sultan Idris</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title">
+      <h2>About Me</h2> 
+	  
+	  <!-- IMAGE -->
+    <div class="about-image">
+      <img src="GambarProfileFormal.jpg" alt="About Image">
+    </div>
+      <p>A short introduction about my background, interest, and career direction.</p>
+    </div></div>
+	
+    <div class="about-grid">
+      <div class="card">
+        <h3>Background</h3>
+        <p>As a third-year student specializing in multimedia education, I have developed a strong interest and 
+		foundational expertise in areas such as visual design, video editing, web design, and
+		the development of interactive digital learning materials. Throughout my academic journey, 
+		I have actively engaged in various projects that enhance both my technical abilities and creative thinking.</p>
+      </div>
+
+      <div class="card">
+        <h3>Career Interest</h3>
+        <p>I am particularly interested in pursuing internship opportunities that are aligned with multimedia design, 
+		digital content creation, video production, web development, and educational technology. 
+		I am eager to apply my knowledge in real-world settings, further refine my skills, and 
+		gain valuable industry experience while contributing effectively to organizational goals.</p>
+      </div>
+
+      <div class="card">
+        <h3>Personal Strength</h3>
+        <p>I am a creative individual who is highly motivated to learn and continuously improve. 
+		I am responsible in carrying out assigned tasks and capable of working effectively both independently and as part of a team. 
+		I have a strong interest in transforming ideas into well-structured, visually appealing, and 
+		impactful digital products that communicate messages clearly and effectively.</p>
+      </div>
+  </div>
+</section>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title">
+      <h2>Skills</h2>
+      <p>Technical and soft skills that support my multimedia work.</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="card">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>Graphic Design</li>
+          <li>Video Editing</li>
+          <li>Web Design</li>
+          <li>UI/UX Prototyping</li>
+          <li>2D Animation</li>
+          <li>Game Asset Design</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Software & Tools</h3>
+        <ul>
+          <li>Adobe Photoshop</li>
+          <li>Adobe Illustrator</li>
+          <li>Adobe Premiere Pro</li>
+          <li>Adobe After Effects</li>
+          <li>Figma</li>
+          <li>GDevelop</li>
+          <li>HTML, CSS, JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Creativity</li>
+          <li>Communication</li>
+          <li>Teamwork</li>
+          <li>Problem Solving</li>
+          <li>Time Management</li>
+          <li>Adaptability</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <div class="section-title">
+      <h2>Selected Projects</h2>
+      <p>Each project includes description, tools used, personal reflection, and my role.</p>
+    </div>
+
+    <div class="projects-grid">
+
+			  <div class="project-card">
+		  <div class="project-image">
+			<img src="healthy-hero.jpeg" alt="Healthy Hero">
+			<span>Retro Game</span>
+		  </div>
+		  <div class="project-content">
+			<h3>Healthy Hero – Educational Game</h3>
+			<p><b>Description:</b> A platformer educational game about healthy food versus junk food, inspired by Super Mario-style gameplay.</p>
+			<p><b>Tools:</b> GDevelop, graphic assets, level design.</p>
+			<p><b>Role:</b> Graphic Designer, responsible for visual assets such as characters, background, and game elements.</p>
+			<p><b>Reflection:</b> I learned how attractive visuals can improve engagement in educational games.</p>
+			<span class="tag">Game Design</span>
+			<span class="tag">Graphic Design</span>
+			<span class="tag">GDevelop</span>
+			
+			<span class="tag">GDevelop</span>
+
+			<a href="https://drive.google.com/file/d/1auwstyDqOeoO62eA7xvqefOVVdat8YTn/view?usp=sharing" target="_blank" class="project-btn">View Project</a>		
+		  </div>
+		</div>
+
+		<div class="project-card">
+		  <div class="project-image">
+		<img src="VideoInovasi.jpeg" alt="Healthy Hero">
+			<span>Video Editing</span>
+		  </div>
+		  <div class="project-content">
+			<h3>Be a Cyber Hero: Stop Think Klik!</h3>
+			<p><b>Description:</b> Edited and produced a creative video with a clear storyline, smooth transitions, and engaging visual presentation. 
+			Produced a video for the Projek Santun Masyarakat programme titled Be a Cyber Hero: Stop Think Klik!. 
+			This project successfully won a Gold Award through the creative and effective delivery of a cyber safety awareness message.</p>
+			<p><b>Tools:</b> CapCut / After Effects</p>
+			<p><b>Role:</b> Video Editor</p>
+			<p><b>Reflection:</b> I learned how to organize video content effectively, apply transitions and effects, and create an engaging viewing experience.</p>
+			<span class="tag">Video Editing</span>
+			
+			<span class="tag">Video Editing</span>
+
+			<a href="https://drive.google.com/file/d/1JAr6APedC_AIwODFneHhMg90HhPN2qIR/view?usp=sharing" target="_blank" class="project-btn">Watch Video</a>
+		  </div>
+		</div>
+
+		<div class="project-card">
+		  <div class="project-image">
+		  <img src="daniel-si-bijak.jpeg" alt="Healthy Hero">
+			<span>2D Animation</span>
+		  </div>
+		  <div class="project-content">
+			<h3>Daniel Si Bijak</h3>
+			<p><b>Description:</b> A 2D animation awareness video about online scam threats using storytelling and visual communication.</p>
+			<p><b>Tools:</b> Adobe Premiere Pro, Adobe After Effects.</p>
+			<p><b>Role:</b> Video Editor and Visual Content Creator.</p>
+			<p><b>Reflection:</b> I learned how timing, audio, and visuals help deliver an effective message.</p>
+			<span class="tag">Animation</span>
+			<span class="tag">Video Editing</span>
+			<span class="tag">Awareness</span>
+			<span class="tag">Awareness</span>
+
+			<a href="https://drive.google.com/file/d/1WbeoowuaP6Td8wlPrwGb0gTnidlpMdTD/view?usp=sharing" target="_blank" class="project-btn">View Animation</a>
+		  </div>
+		</div>
+
+		<div class="project-card">
+		  <div class="project-image">
+		<img src="VideoAplikasi.jpeg" alt="Healthy Hero">
+			<span>Application Development</span>
+		  </div>
+		  <div class="project-content">
+			<h3>EcoKids</h3>
+			<p><b>Description:</b> Developed an educational application called EcoKids, designed to teach children 
+			how to care for and protect the environment through interactive and engaging content.</p>
+			<p><b>Tools:</b> MIT App Inventor</p>
+			<p><b>Role:</b>App Developer / UI Designer.</p>
+			<p><b>Reflection:</b> I learned how to design user-friendly interfaces, structure educational content effectively, and create an engaging learning experience for young users.</p>
+			<span class="tag">App Development</span>
+			<span class="tag">UI Design</span>
+			<span class="tag">UI Design</span>
+
+			<a href="https://drive.google.com/file/d/1CZYfyKd51kWB4I0YPBZqPtGVa-vINLdR/view?usp=sharing" target="_blank" class="project-btn">View App</a>
+		  </div>
+		</div>
+
+    </div>
+	
+	</section>
+	
+	<section id="achievement">
+  <div class="section-title">
+    <h2>Achievements</h2>
+    <p>Highlights of awards and accomplishments in my academic and multimedia journey.</p>
+  </div>
+
+  <div class="skills-grid">
+  
+    <div class="card">
+	  <div class="archiement-image">
+			<img src="InovasiSendiriMedal.jpeg">
+			</div>
+		<div class="archiement-image">
+					<img src="InovasiGambarGroup.jpeg">
+		  </div>
+      <h3>Karnival Pengajian Pendidikan 2026</h3>
+      <p><b>Achievement:</b> Gold Award (EMAS)</p>
+      <p><b>Category:</b> Video Santun Masyarakat</p>
+      <p><b>Date:</b> 10 January 2026</p>
+      <p><b>Description:</b> Produced a creative video focusing on community awareness and positive values.</p>
+    </div>
+
+    <div class="card"> 
+		  <div class="archiement-image">
+			<img src="FunRunEnduranceGroup.jpeg">
+			</div>
+		<div class="archiement-image">
+					<img src="TPPFunRunEndurance.jpeg">
+		  </div>
+      <h3>Endurance Night Run</h3>
+      <p><b>Achievement:</b>Successfully implemented the program</p>
+      <p><b>Role:</b>Deputy Program Director</p>
+      <p><b>Description:</b> The Endurance Night Run program aims to enhance physical fitness, build mental strength, and cultivate discipline among university students.</p>
+    </div>
+
+    <div class="card">
+	<div class="archiement-image">
+			<img src="SukomSendiriMedal.jpeg">
+			</div>
+		<div class="archiement-image">
+					<img src="SukomMedal.jpeg">
+		  </div>
+      <h3>SUKOM </h3>
+      <p><b>Achievement:</b> Two Silver Medals</p>
+	  <p><b>Category:</b> Football and Volleyball</p>
+      <p><b>Description:</b> Uniformed Bodies Sports Championship (Director of Co-Curriculum Centre Cup)</p>
+    </div>
+
+  </div>
+</section>
+	
+
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact Information</h2>
+      <p>Let’s connect for internship opportunities or multimedia collaboration.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="card contact-card">
+        <h3>Email</h3>
+        <a href="mailto:haziqnaimmokhtar@gmail.com">haziqnaimmokhtar@gmail.com</a>
+      </div>
+
+      <div class="card contact-card">
+        <h3>LinkedIn</h3>
+        <a href="https://www.linkedin.com/in/haziq-naim-2887b7406/" target="_blank">Haziq Naim | LinkedIn </a>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Resume</h3>
+        <a href="https://drive.google.com/file/d/1M143P9kG26xXeu6b3LdUv2Jt_4fwZ-xR/view?usp=sharing" target="_blank">Haziq Naim | Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Tengku Haziq Naim bin Tengku Mokhtar. e-Portfolio.</p>
+  </footer>
+
+</body>
+</html>
